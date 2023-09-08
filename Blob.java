@@ -2,11 +2,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Blob {
-    public Blob(String string) {
+    private static Path toTextFile;
+
+    public Blob(String fileName) {
+        toTextFile = Paths.get(fileName);
     }
 
     public static String doSha(String input) {
@@ -55,4 +61,25 @@ public class Blob {
         return sha;
     }
 
+    public static byte[] makeBite(String fileName) throws IOException {
+        String inputString = readText(fileName);
+        byte[] byteArray = inputString.getBytes();
+
+        return byteArray;
+    }
+
+    public static void makeBlob(String fileName) throws IOException {
+        byte[] insideFile = makeBite(fileName);
+        String folderPath = "Objects";
+        Path toObjectsFolder = Paths.get(folderPath, doSha(fileName));
+        Files.write(toObjectsFolder, insideFile);
+    }
+
+    public Path getToTextFile() {
+        return toTextFile;
+    }
+
+    public void setToTextFile(Path toTextFile) {
+        Blob.toTextFile = toTextFile;
+    }
 }
