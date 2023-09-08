@@ -9,13 +9,19 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Blob {
-    private static Path toTextFile;
+    private Path toTextFile;
+    private String fileName;
+    private String fileContents;
+    private String shaName;
 
-    public Blob(String fileName) {
-        toTextFile = Paths.get(fileName);
+    public Blob(String nameOfFile) throws IOException {
+        toTextFile = Paths.get(nameOfFile);
+        fileName = nameOfFile;
+        fileContents = readText(nameOfFile);
+        shaName = doSha(fileContents);
     }
 
-    public static String doSha(String input) {
+    public String doSha(String input) {
         try {
             // getInstance() method is called with algorithm SHA-1
             MessageDigest md = MessageDigest.getInstance("SHA-1");
@@ -46,7 +52,7 @@ public class Blob {
         }
     }
 
-    public static String readText(String fileName) throws IOException {
+    public String readText(String fileName) throws IOException {
         String output = "";
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         while (reader.ready()) {
@@ -57,18 +63,18 @@ public class Blob {
         return output;
     }
 
-    public static String getShaString(String sha) {
-        return sha;
+    public String getShaName() {
+        return shaName;
     }
 
-    public static byte[] makeBite(String fileName) throws IOException {
+    public byte[] makeBite(String fileName) throws IOException {
         String inputString = readText(fileName);
         byte[] byteArray = inputString.getBytes();
 
         return byteArray;
     }
 
-    public static void makeBlob(String fileName) throws IOException {
+    public void makeBlob() throws IOException {
         byte[] insideFile = makeBite(fileName);
         String folderPath = "Objects";
         Path toObjectsFolder = Paths.get(folderPath, doSha(fileName));
@@ -77,9 +83,5 @@ public class Blob {
 
     public Path getToTextFile() {
         return toTextFile;
-    }
-
-    public void setToTextFile(Path toTextFile) {
-        Blob.toTextFile = toTextFile;
     }
 }
