@@ -76,7 +76,7 @@ public class Blob {
 
     public void makeBlob() throws IOException {
         byte[] insideFile = makeBite(fileName);
-        String folderPath = "Objects";
+        String folderPath = "./objects";
         Path toObjectsFolder = Paths.get(folderPath, doSha(fileName));
         Files.write(toObjectsFolder, insideFile);
     }

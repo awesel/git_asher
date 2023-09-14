@@ -11,7 +11,7 @@ public class Index {
     }
 
     public void init() throws IOException {
-        File newFile = new File("index");
+        File newFile = new File("./objectsindex");
         if (!newFile.exists()) {
             newFile.createNewFile();
         }

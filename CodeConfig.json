@@ -1,0 +1,100 @@
+[
+    {
+        "className": "Index",
+        "constructorConfigs": [],
+        "methodConfigs": [
+            {
+                "methodName": "init",
+                "parameters": [],
+                "values": []
+            },
+            {
+                "methodName": "add",
+                "parameters": [
+                    "String"
+                ],
+                "values": [
+                    "testIndex.txt"
+                ]
+            },
+            {
+                "methodName": "delete",
+                "parameters": [
+                    "String"
+                ],
+                "values": [
+                    "testIndex.txt"
+                ]
+            },
+            {
+                "methodName": "existsAlready",
+                "parameters": [
+                    "String",
+                    "String"
+                ],
+                "values": [
+                    "testFile.txt",
+                    "testHash"
+                ]
+            }
+        ]
+    },
+    {
+        "className": "Blob",
+        "constructorConfigs": [
+            {
+                "parameterTypes": [
+                    "String"
+                ],
+                "values": [
+                    "testFile.txt"
+                ]
+            }
+        ],
+        "methodConfigs": [
+            {
+                "methodName": "doSha",
+                "parameters": [
+                    "String"
+                ],
+                "values": [
+                    "testInput"
+                ]
+            },
+            {
+                "methodName": "readText",
+                "parameters": [
+                    "String"
+                ],
+                "values": [
+                    "testFile.txt"
+                ]
+            },
+            {
+                "methodName": "getShaName",
+                "parameters": [],
+                "values": []
+            },
+            {
+                "methodName": "makeBite",
+                "parameters": [
+                    "String"
+                ],
+                "values": [
+                    "testFile.txt"
+                ]
+            },
+            {
+                "methodName": "makeBlob",
+                "parameters": [],
+                "values": []
+            },
+            {
+                "methodName": "getToTextFile",
+                "parameters": [],
+                "values": []
+            }
+        ]
+    }
+]
+
