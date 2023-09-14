@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -15,7 +16,6 @@ public class Blob {
     private String shaName;
 
     public Blob(String nameOfFile) throws IOException {
-        toTextFile = Paths.get(nameOfFile);
         fileName = nameOfFile;
         fileContents = readText(nameOfFile);
         shaName = doSha(fileContents);

@@ -1,0 +1,39 @@
+
+    @Test
+    public void testMakeBite() throws IOException {
+        String expectedContent = readFile(new File("test.txt")); /
+        String actualContent = new String(blob.makeBite("sample.txt"));
+        assertEquals(expectedContent, actualContent);
+    }
+
+    @Test
+    public void testMakeBlob() throws IOException {
+        String expectedSha = "cf5218b1f770dcaf2df718c0232ae5bf8f619ba6";
+
+        blob.makeBlob();
+
+        String toObjectsFolderPath = "./objects/" + expectedSha;
+        File thing = new File(toObjectsFolderPath);
+        String expectedContent = readFile(thing);
+        String actualContent = readFile(new File("test.txt"));
+
+        assertEquals(expectedContent, actualContent);
+    }
+
+    public static String readFile(File file) {
+        String currentString = "";
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            while (reader.ready()) {
+                char nextChar = (char) reader.read();
+                currentString += nextChar;
+
+            }
+            reader.close();
+        } catch (IOException ex) {
+            System.out.println("nah");
+        }
+        return currentString;
+
+    }
